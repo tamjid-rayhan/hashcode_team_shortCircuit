@@ -1,9 +1,9 @@
 fname = input("Enter file name = ")
 
 if(len(fname)<1):
-    fname = 'a_example.in'
+    fname = 'a_example'
 
-fhandle = open(fname)
+fhandle = open(fname+'.in')
 
 linecount = 0
 max_slices = None # The maximum number of slices allowed
@@ -30,14 +30,14 @@ for line in fhandle:
 
 #--------------Now that all the required values are extracted, print them-------------
 #--------------Remove it later--------------------------------------------------------
-print("Maxium number of slices:",max_slices )
-print("Number of available pizzas:", num_pizza)
-print("Slice number for each pizza \n", slice_nos)
+#print("Maxium number of slices:",max_slices )
+#print("Number of available pizzas:", num_pizza)
+#print("Slice number for each pizza \n", slice_nos)
 
 #----------sort the slice_nos in the descending order of number of slices(values)-----------
 sorted_slice_nos = sorted([(v,k) for (k,v) in slice_nos.items()],reverse = True)
 #--------------------remove this print later----------------------------
-print("Sorted slice number for each pizza \n", sorted_slice_nos)
+#print("Sorted slice number for each pizza \n", sorted_slice_nos)
 
 sum = 0
 pizza_bucket = list()
@@ -54,7 +54,20 @@ for pizza in sorted_slice_nos:
     sum = sum -slices
 
 
-print("Output line 1:",pizza_count)
-print("Output line 2:", sorted(pizza_bucket))
+#print(pizza_count)
+#print("Output line 2:", sorted(pizza_bucket))
+#pizza_bucket = sorted(pizza_bucket)
+#for i in pizza_bucket:
+    #print(i, end= " ")
 
-print("SCORE IS ", sum)
+f = open(fname+'.out','w+')
+f.write(str(pizza_count)+'\n')
+
+
+second_line = ""
+pizza_bucket = sorted(pizza_bucket)
+for i in pizza_bucket:
+    #f.write(str(i),end=" ")
+    second_line += (str(i)+" ")
+f.write(second_line+'\n')
+#print("SCORE IS ", sum)
